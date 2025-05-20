@@ -1,5 +1,6 @@
 import 'package:article/article/model/article_summary.dart';
 import 'package:article/article/presentation/screen/article_detail_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -15,14 +16,15 @@ class ArticleListTile extends StatelessWidget {
           articleSummary.thumbnail != null
               ? AspectRatio(
                 aspectRatio: 1,
-                child: ClipRect(
-                  child: Image.network(
-                    articleSummary.thumbnail!,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Icon(Icons.error);
-                    },
-                  ),
+                child: CachedNetworkImage(
+                  imageUrl: articleSummary.thumbnail!,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, error, stackTrace) {
+                    return const Icon(Icons.error);
+                  },
+                  placeholder: (context, url) {
+                    return const Center(child: CircularProgressIndicator());
+                  },
                 ),
               )
               : null,
