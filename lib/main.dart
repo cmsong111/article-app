@@ -1,4 +1,3 @@
-import 'package:article/article/presentation/screen/article_list_screen.dart';
 import 'package:article/common/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -15,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       builder:
           (context, widget) => ResponsiveBreakpoints.builder(
             child: ClampingScrollWrapper.builder(context, widget!),
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
               const Breakpoint(start: 801, end: double.infinity, name: DESKTOP),
             ],
           ),
-      home: const MainScreen()
+      home: const MainScreen(),
     );
   }
 }
